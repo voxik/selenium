@@ -138,12 +138,8 @@ class DistributedTest {
 
       assertThat(nce.getMessage()).contains("TimeoutException");
 
-      Thread.sleep(
-          // ensure the grid has some time to start the browser
-          Duration.ofNanos((end - start) * 2)
-              // and shutdown the browser
-              .plusSeconds(20)
-              .toMillis());
+      // ensure the grid has some time to start the browser and shutdown the browser
+      Thread.sleep(Duration.ofNanos((end - start) * 3).toMillis());
 
       HttpClient client = HttpClient.Factory.createDefault().createClient(server.getUrl());
       try {
@@ -193,7 +189,7 @@ class DistributedTest {
         Safely.safelyCall(client::close);
       }
     } finally {
-      Safely.safelyCall(healthy::close);
+      Safely.safelyCall(healthy::quit);
     }
   }
 }
