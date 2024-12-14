@@ -1,4 +1,4 @@
-// <copyright file="RemoteReference.cs" company="Selenium Committers">
+// <copyright file="IRemoteReference.cs" company="Selenium Committers">
 // Licensed to the Software Freedom Conservancy (SFC) under one
 // or more contributor license agreements.  See the NOTICE file
 // distributed with this work for additional information
@@ -30,7 +30,9 @@ public interface ISharedReference : IRemoteReference
     public Handle? Handle { get; set; }
 }
 
-public record RemoteObjectReference(Handle Handle) : IRemoteReference
+public interface IRemoteObjectReference : IRemoteReference
 {
+    public Handle Handle { get; }
+
     public string? SharedId { get; set; }
 }
