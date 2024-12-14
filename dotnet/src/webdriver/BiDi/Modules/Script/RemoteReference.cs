@@ -21,14 +21,16 @@
 
 namespace OpenQA.Selenium.BiDi.Modules.Script;
 
-public abstract record RemoteReference : LocalValue;
+public interface IRemoteReference;
 
-public record SharedReference(string SharedId) : RemoteReference
+public interface ISharedReference : IRemoteReference
 {
+    public string SharedId { get; }
+
     public Handle? Handle { get; set; }
 }
 
-public record RemoteObjectReference(Handle Handle) : RemoteReference
+public record RemoteObjectReference(Handle Handle) : IRemoteReference
 {
     public string? SharedId { get; set; }
 }
