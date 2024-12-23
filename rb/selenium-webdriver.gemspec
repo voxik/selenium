@@ -45,7 +45,6 @@ Gem::Specification.new do |s|
   s.files += Dir['bin/**/*']
   s.files += Dir['lib/selenium/webdriver/**/*']
 
-  s.bindir = 'bin'
   s.require_paths = ['lib']
 
   s.add_dependency 'base64', ['~> 0.2']
